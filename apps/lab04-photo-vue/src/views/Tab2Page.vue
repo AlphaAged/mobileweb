@@ -3,35 +3,55 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>Photo Gallery</ion-title>
-        <ion-h1>โดย พีรัชชัย สืบสิงห์</ion-h1>
+        <ion-h1>โดย 6663380225-9 พีรัชชัย สืบสิงห์</ion-h1>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">Photo Gallery</ion-title>
-
         </ion-toolbar>
       </ion-header>
 
-      <!-- CHANGE: Add the floating action button -->
+      <!-- CHANGE: Add a grid component to display the photos -->
+      <ion-grid>
+        <ion-row>
+          <!-- CHANGE: Create a new column and image component for each photo -->
+          <ion-col size="6" :key="photo.filepath" v-for="photo in photos">
+            <ion-img :src="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-        <ion-fab-button>
+        <!-- CHANGE: Add a click event listener to the floating action button -->
+        <ion-fab-button @click="addNewToGallery()">
           <ion-icon :icon="camera"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-
-      <!-- CHANGE: Remove or comment out <ExploreContainer /> -->
-      <!-- <ExploreContainer name="Tab 2 page" /> -->
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-// CHANGE: Add import from `ionicons/icons`
-import { camera } from 'ionicons/icons';
-// CHANGE: Update import from `@ionic/vue` to include necessary Ionic components
-import { IonPage, IonHeader, IonFab, IonFabButton, IonIcon, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-// CHANGE: Remove or comment out the ExploreContainer import
-// import ExploreContainer from '@/components/ExploreContainer.vue';
+import { camera, trash, close } from 'ionicons/icons';
+import {
+  IonPage,
+  IonHeader,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonImg,
+} from '@ionic/vue';
+
+import { usePhotoGallery } from '@/composables/usePhotoGallery';
+
+// CHANGE: Add `photos` array to destructure from `usePhotoGallery()`
+const { photos, addNewToGallery } = usePhotoGallery();
 </script>
