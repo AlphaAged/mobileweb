@@ -1,0 +1,7 @@
+{
+  "name": "lablab06-expense",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
