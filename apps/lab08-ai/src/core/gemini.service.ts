@@ -8,7 +8,7 @@ export const ai = getAI(app, { backend: new GoogleAIBackend() });
 
 
 export const visionModel = getGenerativeModel(ai, {
-  model: "gemini-2.5-flash",
+  model: "gemini-2.5-flash-lite",
   generationConfig: {
     responseMimeType: "application/json",
     responseSchema: imageAnalysisSchema,
